@@ -1,0 +1,26 @@
+library(shiny)
+library(dygraphs)
+
+shinyUI(fluidPage(
+  titlePanel("Carry Trade Profit"),
+  
+  sidebarLayout(
+    sidebarPanel(
+
+       helpText("Select Funding and Investing Currency"),
+      
+      selectizeInput("funding", label = h3("Select Funding Currency"), choices= c("JPY" = "1", "GBP" = "2"), selected = "JPY") ,
+      
+      selectizeInput("investing", label = h3("Select Investing Currency"), choices= c("JPY" = "1", "GBP" = "2"), selected = "GBP"), 
+      
+      
+      dateRangeInput('dateRange',
+                     label = 'Date range: dd-mm-yyyy',
+                     start = "01-01-1990", end = "10-10-2015"
+      )),           
+   
+    
+    
+    mainPanel(dygraphOutput("plot"))
+  )
+))
